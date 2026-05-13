@@ -13,11 +13,17 @@ Socle applicatif pour l’inventaire trimestriel d’une association (stock alim
 ```bash
 npm install
 cp .env.local.example .env.local
-# Renseigner NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY (jalon 3)
+# Renseigner NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY (voir .env.local.example)
 npm run dev
 ```
 
 L’application démarre sur [http://localhost:3000](http://localhost:3000). Pages placeholder : **`/mobile`** (groupe `(mobile)`), **`/desktop`** (groupe `(desktop)`).
+
+## PWA (installable)
+
+- **`public/manifest.json`** + **`public/icons/`** (PNG 192 / 512, placeholders téléchargés depuis placehold.co — à remplacer par vos visuels).
+- **`@ducanh2912/next-pwa`** dans **`next.config.ts`** : le service worker est **désactivé en `development`**, généré en **`next build`** (`public/sw.js`, `public/workbox-*.js`, ignorés par Git — régénérés au build / sur Vercel).
+- Pour tester l’installation : **`npm run build`** puis **`npm run start`**, ouvrir le site en HTTPS (ou localhost), menu du navigateur « Installer l’application » / « Ajouter à l’écran d’accueil ».
 
 ## Qualité
 
@@ -26,7 +32,16 @@ L’application démarre sur [http://localhost:3000](http://localhost:3000). Pag
 
 ## Variables d’environnement
 
-Voir **`.env.local.example`** (ajouté avec le squelette). Ne jamais committer `.env.local`.
+Voir **`.env.local.example`**. Variables utilisées par le jalon 3 :
+
+- **`NEXT_PUBLIC_SUPABASE_URL`** — URL du projet Supabase.
+- **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** — clé publique (anon ou publishable selon le tableau de bord).
+
+Variable **optionnelle** (serveur uniquement, jamais préfixée `NEXT_PUBLIC_`) :
+
+- **`SUPABASE_SERVICE_ROLE_KEY`** — à n’utiliser que dans du code exclusivement serveur (futurs scripts admin), pas dans les Composants Client.
+
+Ne jamais committer `.env.local`.
 
 ## Base de données — appliquer les migrations sur Supabase (cloud)
 

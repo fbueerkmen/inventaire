@@ -10,7 +10,7 @@ Application d’inventaire trimestriel pour une association (stock alimentaire /
 
 - **Frontend** : Next.js 15 (App Router), TypeScript **strict**
 - **UI** : Tailwind CSS + shadcn/ui
-- **Mobile** : PWA (`@ducanh2912/next-pwa`), scan via `BarcodeDetector` + fallback `@zxing/browser` (hors socle initial si non encore câblé)
+- **Mobile** : PWA **`@ducanh2912/next-pwa`** (`next.config.ts`, `public/manifest.json`, `public/icons/` ; SW généré au build, listé dans `.gitignore`) ; scan via `BarcodeDetector` + fallback `@zxing/browser` (hors features scan)
 - **Backend** : Supabase (Postgres, région **Frankfurt**), Auth pseudo + PIN (custom, pas d’email)
 - **Hébergement** : Vercel Hobby + Supabase Free
 
@@ -24,7 +24,8 @@ Application d’inventaire trimestriel pour une association (stock alimentaire /
 - Alias d’import **`@/`** (voir `tsconfig.json`)
 - Types DB : générés avec `npx supabase gen types typescript` quand le projet Supabase existe
 - **Toutes les requêtes BDD** passent par `lib/db/` — **pas de SQL brut dans les composants**
-- **Pas** de Redux / Zustand en V1 : état serveur via Supabase + **React Query** ; état local `useState` / `useReducer`
+- **Pas** de Redux / Zustand en V1 : état serveur via Supabase + **React Query** (`app/providers.tsx` + enveloppe dans `app/layout.tsx`) ; état local `useState` / `useReducer`
+- **Supabase** : `lib/supabase/client.ts` (navigateur), `lib/supabase/server.ts` (serveur), `middleware.ts` pour le rafraîchissement des cookies Auth ; variables dans `.env.local` (voir `.env.local.example`).
 - **shadcn Button (base / Base UI)** : pas de prop `asChild` ; pour un lien avec apparence bouton, utiliser **`buttonVariants` + `Link`** (ex. `app/page.tsx`).
 
 ## Base de données

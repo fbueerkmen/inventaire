@@ -23,7 +23,8 @@ L’application est utilisée par les **opérateurs** sur smartphone Android per
 - **Pas de modales bloquantes** : préférer des **écrans pleins** ou des panneaux non bloquants.
 - **Feedback** immédiat : indicateurs de chargement, confirmations type toast.
 
-## Technique (rappel)
+## Technique (socle)
 
-- Manifest et icônes : `public/manifest.json`, `public/icons/` (socle PWA).
-- Plugin : **`@ducanh2912/next-pwa`** (voir `docs/01-stack.md`).
+- **`public/manifest.json`** et **`public/icons/icon-192.png`**, **`icon-512.png`** (placeholders ; à remplacer par la charte de l’association).
+- **`@ducanh2912/next-pwa`** dans **`next.config.ts`** : pas de SW en dev (`disable: development`), SW + Workbox générés au **`next build`**.
+- Métadonnées PWA : **`app/layout.tsx`** — `metadata.manifest`, `appleWebApp`, `viewport.themeColor`.

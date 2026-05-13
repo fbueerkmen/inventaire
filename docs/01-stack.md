@@ -8,7 +8,7 @@ Vue d’ensemble des choix validés pour le projet.
 |-----------|--------|
 | Frontend | **Next.js 15** (App Router, dernière release 15.x patchée — ex. **15.5.x**) + **TypeScript strict** |
 | Styling | **Tailwind CSS** + **shadcn/ui** |
-| Mobile | **PWA** installable — **`@ducanh2912/next-pwa`** ; scan : **BarcodeDetector** (API native) + fallback **`@zxing/browser`** |
+| Mobile | **PWA** installable — **`@ducanh2912/next-pwa`** (SW actif après `next build` / prod, désactivé en dev) ; scan : **BarcodeDetector** + **`@zxing/browser`** |
 | Backend | **Supabase** (PostgreSQL + Realtime + Storage ; auth métier pseudo + PIN, pas Supabase Auth email) |
 | Hébergement app | **Vercel** (Hobby, usage non commercial) |
 | Hébergement BDD | **Supabase Free**, région **Frankfurt (UE)** |
@@ -35,7 +35,9 @@ Vue d’ensemble des choix validés pour le projet.
 
 - Types générés : `npx supabase gen types typescript` (après liaison au projet Supabase).
 - Accès BDD encapsulé dans **`lib/db/`** — pas de SQL ad hoc dans les composants UI.
-- Clients Supabase : **`lib/supabase/`** (client navigateur + client serveur selon le guide SSR App Router).
+- Clients Supabase : **`lib/supabase/`** (`client.ts`, `server.ts`, `env.ts`) + **`middleware.ts`** pour le rafraîchissement des cookies Auth.
+- **TanStack React Query** (`@tanstack/react-query`) — enveloppe **`app/providers.tsx`** dans le layout racine.
+- **Scan / données** (installés, usage métier plus tard) : `@zxing/browser`, `papaparse`, `jsbarcode`.
 
 ## Arborescence App Router (socle)
 
