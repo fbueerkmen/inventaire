@@ -1,6 +1,8 @@
 # Base de données
 
-Le schéma relationnel et les fonctions PostgreSQL sont versionnés dans **`supabase/migrations/`**. La migration initiale V1 **socle** contient le **schéma et les fonctions** ; les politiques **Row Level Security (RLS)** ne font pas partie de ce socle et devront être définies avant une exposition large d’Internet.
+Le schéma versionné se trouve dans **`supabase/migrations/0001_initial_schema.sql`**. Appliquer sur le projet cloud : voir **`README.md`** (éditeur SQL ou CLI).
+
+La migration initiale V1 **socle** contient uniquement le **schéma et les fonctions** ; les politiques **Row Level Security (RLS)** seront ajoutées dans une itération dédiée avant exposition large.
 
 ## Application sur le projet cloud
 
