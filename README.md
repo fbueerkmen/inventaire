@@ -29,6 +29,11 @@ L’application démarre sur [http://localhost:3000](http://localhost:3000). Pag
 
 - `npm run lint` — ESLint (config **flat** dans `eslint.config.mjs`, compat `next/core-web-vitals` via `@eslint/eslintrc`). Next peut afficher un avertissement de dépréciation de `next lint` (migration possible vers le CLI ESLint en Next 16).
 - `npm run build` — compilation production.
+- `npm run gen:types` — génère `lib/database.types.ts` via [Supabase CLI](https://supabase.com/docs/guides/cli) (`supabase link` au préalable ; voir aussi la variante avec `--project-id` ci-dessous).
+
+## API santé (keep-alive futur)
+
+- **`GET /api/health`** — renvoie `{ "ok": true, "service": "inventaire" }` (sans cache). Pensé pour un ping périodique (ex. cron-job.org) afin de limiter la pause d’un projet Supabase Free — voir `docs/01-stack.md` et `docs/07-roadmap.md`.
 
 ## Variables d’environnement
 
@@ -42,6 +47,24 @@ Variable **optionnelle** (serveur uniquement, jamais préfixée `NEXT_PUBLIC_`) 
 - **`SUPABASE_SERVICE_ROLE_KEY`** — à n’utiliser que dans du code exclusivement serveur (futurs scripts admin), pas dans les Composants Client.
 
 Ne jamais committer `.env.local`.
+
+## Types TypeScript (Supabase)
+
+Après liaison du projet ([Supabase CLI](https://supabase.com/docs/guides/cli) installé) :
+
+```bash
+npx supabase login
+npx supabase link --project-ref <votre-project-ref>
+npm run gen:types
+```
+
+Sans CLI, depuis le dashboard : **Settings → API → Project reference**, puis :
+
+```bash
+npx supabase gen types typescript --project-id <project-ref> > lib/database.types.ts
+```
+
+Ensuite, typer les clients (`createBrowserClient<Database>(...)`, etc.) dans une itération dédiée.
 
 ## Base de données — appliquer les migrations sur Supabase (cloud)
 

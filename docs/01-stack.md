@@ -23,7 +23,7 @@ Vue d’ensemble des choix validés pour le projet.
 ## Free tier et disponibilité
 
 - **Supabase Free** : le projet peut être **mis en pause** après une période d’inactivité (ordre de grandeur : ~7 jours sans requête selon les conditions du fournisseur).
-- Les inventaires sont **trimestriels** ; un **ping périodique** via un service externe gratuit (ex. **cron-job.org**) vers une route légère (ex. `/api/health`) pourra être documenté et ajouté **plus tard** — hors périmètre du socle initial.
+- Les inventaires sont **trimestriels** ; un **ping périodique** via un service externe gratuit (ex. **cron-job.org**) vers **`GET /api/health`** pourra être configuré **plus tard** — la route existe déjà dans le socle.
 
 ## Librairies d’état et données
 

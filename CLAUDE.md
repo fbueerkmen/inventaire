@@ -11,7 +11,7 @@ Application d’inventaire trimestriel pour une association (stock alimentaire /
 - **Frontend** : Next.js 15 (App Router), TypeScript **strict**
 - **UI** : Tailwind CSS + shadcn/ui
 - **Mobile** : PWA **`@ducanh2912/next-pwa`** (`next.config.ts`, `public/manifest.json`, `public/icons/` ; SW généré au build, listé dans `.gitignore`) ; scan via `BarcodeDetector` + fallback `@zxing/browser` (hors features scan)
-- **Backend** : Supabase (Postgres, région **Frankfurt**), Auth pseudo + PIN (custom, pas d’email)
+- **Backend** : Supabase (Postgres, région **Frankfurt**), Auth pseudo + PIN (custom, pas d’email). Route **`GET /api/health`** pour futur keep-alive / supervision.
 - **Hébergement** : Vercel Hobby + Supabase Free
 
 ## Conventions de code

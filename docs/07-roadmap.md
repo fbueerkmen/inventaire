@@ -16,7 +16,7 @@ Les éléments ci-dessous sont **documentés** pour mémoire et planification. *
 ## Sécurité et prod (à planifier après le socle)
 
 - Politiques **Row Level Security (RLS)** Supabase alignées sur les rôles admin / opérateur et sur l’usage des clés (anon vs service côté serveur uniquement).
-- **Keep-alive** planifié (cron externe gratuit) pour limiter la pause du projet Supabase Free entre inventaires trimestriels.
+- **Keep-alive** : brancher un cron externe gratuit sur **`GET /api/health`** (route déjà présente) pour limiter la pause du projet Supabase Free entre inventaires trimestriels.
 
 ## Améliorations possibles (backlog non commité)
 

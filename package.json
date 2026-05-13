@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen:types": "npx supabase gen types typescript --linked > lib/database.types.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
